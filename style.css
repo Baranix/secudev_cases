@@ -1,0 +1,68 @@
+body
+{
+	background-image: url("paper.jpg");
+}
+
+h1
+{
+
+	background-color:#5C7A99;
+	font-family: Arial;
+	font-size: 50px;
+	text-align: center;
+	color: white;
+	border-radius: 25px;
+	margin-right: 30px;
+	margin-left: 30px;
+	padding-top: 25px;
+	padding-right: 50px;
+	padding-bottom: 25px;
+	padding-left: 50px;
+}
+
+.content
+{
+	background-color: #D6EBFF;
+	border:3px solid #5C7A99 ;
+	border-radius: 25px;
+	font-family: Arial;
+	font-size: 16px;
+	margin-right: 30px;
+	margin-left: 30px;
+	padding-top: 20px;
+	padding-right: 50px;
+	padding-bottom: 20px;
+	padding-left: 100px;
+}
+
+input, select, textarea
+{ 
+	border: 3px solid #5C7A99;
+	border-radius: 25px;
+	padding: 3px;
+	padding-left: 10px;
+}
+
+
+#submit
+{
+	padding: 10px !important;
+	width: 100px;
+	background-color: #5C7A99;
+	color: white;
+}
+
+.warning
+{
+	background-color: #980000;
+	color: white;
+	border-radius: 10px;
+	width: 500px;
+	line-height: 150%;
+}
+
+.active_warning
+{
+	padding: 10px;
+	margin-top: 5px;
+}
