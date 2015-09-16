@@ -44,6 +44,8 @@
 
 						echo "<form action=\"logout.php\" method=\"POST\"><input id=\"submit\" type=\"submit\" value=\"Logout\"></form>";
 					
+						echo "<br><br><a href=\"editUserProfile.php\">Edit User's Profile</a>";
+					
 						if($superuser)
 						{
 							echo "<br><br><a href=\"adminRegistrationPage.php\">Admin Page</a>";
@@ -64,7 +66,55 @@
 			
 
 		?>
-		</div>
+
+	</div>
+
+		<div class="message_boards">
+
+			<textarea name="POST" rows="8" cols="95">Enter message Here.</textarea>
+			<br>
+			<br>
+			<input id="submit" type="submit" value="POST">
+			<br>
+			<br>
+
+			<div class="user">
+
+				
+				First Name:
+				<br>
+				<br>
+				User Name:
+				<br>
+				<br>
+				Date Joined:
+				<br>
+				<br>
+				<br>
+
+			</div>	
+
+			<div class="message">
+
+				Date Posted: 
+				<br>
+				<br>
+				Post:
+				<br>
+				<br>
+				Date Edited:
+				<br>
+				<br>
+				<u>Edit</u> <u>Delete</u>
+				
+			</div>
+			
+		</div>		
+
+
+
+
+
 
 	</body>
 </html>
