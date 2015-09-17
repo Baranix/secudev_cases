@@ -75,9 +75,9 @@
 				<span class="warning" id="warning_lname"></span>
 				<br> <br>
 				GENDER: 
-						<input type="radio" id="male" name="gender" value="M" onchange="genderChange(this)" checked>
+						<input type="radio" id="male" name="gender" value="1" onchange="genderChange(this.value)" checked>
 						<label for="male">Male</label>
-						<input type="radio" id="female" name="gender" value="F" onchange="genderChange(this)">
+						<input type="radio" id="female" name="gender" value="2" onchange="genderChange(this.value)">
 						<label for="female">Female</label>
 				<br> <br>
 				SALUTATION: <select id="salutation" name="salutation">

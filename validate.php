@@ -46,10 +46,9 @@
 		$flag["salutation"] = 1;
 	$flag["lname"] = checkCharacterLimit($lname);
 	$flag["fname"] = checkCharacterLimit($fname);
-	$flag["gender"] = checkCharacterLimit($gender);
-	if( $flag["gender"] && ( $gender!='M' && $gender!='F' ) )
+	if( $gender=='1' || $gender=='2' )
 	{
-		$flag["gender"] = 0;
+		$flag["gender"] = 1;
 	}
 	if( !empty($year) && !empty($month) && !empty($day) && preg_match("/^[0-9]+$/", $year) && preg_match("/^[0-9]+$/", $month) && preg_match("/^[0-9]+$/", $day) )
 	{
@@ -85,11 +84,11 @@
 			$gender = mysqli_real_escape_string($con, $gender);
 			$about = mysqli_real_escape_string($con, $about);
 
-			$q = "SELECT username FROM user WHERE username='" . $username . "';";
+			$q = "SELECT username FROM user WHERE lower(username)='" . strtolower($username) . "';";
 
 			$result = mysqli_query($con,$q);
 
-			if( !$result )
+			if( mysqli_num_rows($result) == 0 )
 			{
 				// Columns to be updated
 				$columns = "username, password, salutation, first_name, last_name, gender, birthdate, about";

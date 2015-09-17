@@ -19,13 +19,13 @@ function genderChange(gender)
 {
 	// Change the available Salutations depending on Gender
 
-	if( gender.value == "M" )
+	if( gender == "1" )
 	{
-		document.getElementById("salutation").innerHTML = "<option value=\"Mr.\">Mr.</option><option value=\"Sir\">Sir</option><option value=\"Se&ntilde;or\">Se&ntilde;or</option><option value=\"Count\">Count</option>"
+		document.getElementById("salutation").innerHTML = "<option value=\"1\">Mr.</option><option value=\"2\">Sir</option><option value=\"3\">Se&ntilde;or</option><option value=\"4\">Count</option>"
 	}
 	else
 	{
-		document.getElementById("salutation").innerHTML = "<option value=\"Miss\">Miss</option><option value=\"Ms.\">Ms</option><option value=\"Mrs.\">Mrs</option><option value=\"Madame\">Madame</option><option value=\"Majesty\">Majesty</option><option value=\"Se&ntilde;ora\">Se&ntilde;ora</option>"
+		document.getElementById("salutation").innerHTML = "<option value=\"5\">Miss</option><option value=\"6\">Ms</option><option value=\"7\">Mrs</option><option value=\"8\">Madame</option><option value=\"9\">Majesty</option><option value=\"10\">Se&ntilde;ora</option>"
 	}
 }
 
