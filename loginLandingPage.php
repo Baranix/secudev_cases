@@ -42,9 +42,9 @@
 							$superuser = $row["is_superuser"];
 						}
 
-						echo "<form action=\"logout.php\" method=\"POST\"><input id=\"submit\" type=\"submit\" value=\"Logout\"></form>";
-					
-						echo "<br><br><a href=\"editUserProfile.php\">Edit User's Profile</a>";
+						echo "<br><br>"; 
+						echo "<a class=\"button\" href=\"editProfilePage.php\">Edit Profile</a> ";
+						echo "<a class=\"button\" href=\"logout.php\">Logout</a>";
 					
 						if($superuser)
 						{
@@ -71,33 +71,29 @@
 
 		<div class="message_boards">
 
-			<textarea name="POST" rows="8" cols="95">Enter message Here.</textarea>
-			<br>
-			<br>
-			<input id="submit" type="submit" value="POST">
-			<br>
-			<br>
+			<div id="post_msg">
 
-			<div class="user">
+				<form action="post.php" method="POST" id="form_post_msg">
+					Message:<br>
+					<textarea rows="4" cols="100"></textarea>
+					<br>
+					<input id="submit" type="Submit" value="Post">
+				</form>
 
-				
+			</div>
+
+			<div class="poster_info">
 				First Name:
-				<br>
 				<br>
 				User Name:
 				<br>
-				<br>
 				Date Joined:
 				<br>
-				<br>
-				<br>
-
 			</div>	
 
 			<div class="message">
 
 				Date Posted: 
-				<br>
 				<br>
 				Post:
 				<br>
@@ -110,11 +106,6 @@
 			</div>
 			
 		</div>		
-
-
-
-
-
 
 	</body>
 </html>

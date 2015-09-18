@@ -21,11 +21,29 @@ function genderChange(gender)
 
 	if( gender == "1" )
 	{
-		document.getElementById("salutation").innerHTML = "<option value=\"1\">Mr.</option><option value=\"2\">Sir</option><option value=\"3\">Se&ntilde;or</option><option value=\"4\">Count</option>"
+		document.getElementById("salutation").innerHTML = "<option value=\"1\" selected>Mr.</option><option value=\"2\">Sir</option><option value=\"3\">Se&ntilde;or</option><option value=\"4\">Count</option>"
 	}
 	else
 	{
-		document.getElementById("salutation").innerHTML = "<option value=\"5\">Miss</option><option value=\"6\">Ms</option><option value=\"7\">Mrs</option><option value=\"8\">Madame</option><option value=\"9\">Majesty</option><option value=\"10\">Se&ntilde;ora</option>"
+		document.getElementById("salutation").innerHTML = "<option value=\"5\" selected>Miss</option><option value=\"6\">Ms</option><option value=\"7\">Mrs</option><option value=\"8\">Madame</option><option value=\"9\">Majesty</option><option value=\"10\">Se&ntilde;ora</option>"
+	}
+}
+
+function birthdateChange(month, day, year)
+{
+	// Change the Birthdate depending on the user
+
+	document.getElementById("month").options[month-1].selected = true;
+	document.getElementById("day").options[day-1].selected = true;
+
+	var yearInput = document.getElementById("year");
+	var numYears = yearInput.options.length;
+	for(var i=0;i<numYears;i++)
+	{
+		if(yearInput.options[i].value == year)
+		{
+			yearInput.options[i].selected = true;
+		}
 	}
 }
 

@@ -81,7 +81,7 @@
 						<label for="female">Female</label>
 				<br> <br>
 				SALUTATION: <select id="salutation" name="salutation">
-						<option value="Mr.">Mr.</option>
+						<option value="Mr." selected>Mr.</option>
 						<option value="Sir">Sir</option>
 						<option value="Se&ntilde;or">Se&ntilde;or</option>
 						<option value="Count">Count</option>

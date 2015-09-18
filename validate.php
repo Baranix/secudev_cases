@@ -1,15 +1,29 @@
 <?php
-	// Strip all inputs of possible HTML tags
-	$username = strip_tags( $_POST["username"] );
-	$password = strip_tags( $_POST["password"] );
-	$salutation = strip_tags( $_POST["salutation"] );
-	$lname = strip_tags( $_POST["lastName"] );
-	$fname = strip_tags( $_POST["firstName"] );
-	$gender = strip_tags( $_POST["gender"] );
-	$year = strip_tags( $_POST["year"] );
-	$month = strip_tags( $_POST["month"] );
-	$day = strip_tags( $_POST["day"] );
-	$about = strip_tags( $_POST["aboutMe"] );
+	// Strip all inputs of possible HTML tags and surrounding white spaces
+	$username = strip_tags( trim( $_POST["username"] ) );
+	$password = strip_tags( trim( $_POST["password"] ) );
+	$gender = strip_tags( trim( $_POST["gender"] ) );
+	if( empty( $_POST["salutation"] ) )
+	{
+		if( $gender == 1 )
+		{
+			$salutation = 1;
+		}
+		else
+		{
+			$salutation = 5;
+		}
+	}
+	else
+	{
+		$salutation = strip_tags( trim( $_POST["salutation"] ) );
+	}
+	$lname = strip_tags( trim( $_POST["lastName"] ) );
+	$fname = strip_tags( trim( $_POST["firstName"] ) );
+	$year = strip_tags( trim( $_POST["year"] ) );
+	$month = strip_tags( trim( $_POST["month"] ) );
+	$day = strip_tags( trim( $_POST["day"] ) );
+	$about = strip_tags( trim( $_POST["aboutMe"] ) );
 
 	if ( isset( $_POST["status"] ) )
 	{

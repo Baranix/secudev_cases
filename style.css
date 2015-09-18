@@ -35,7 +35,7 @@ h1
 	padding-left: 100px;
 }
 
-input, select, textarea
+input, select, textarea, .button
 { 
 	border: 3px solid #5C7A99;
 	border-radius: 25px;
@@ -44,12 +44,15 @@ input, select, textarea
 }
 
 
-#submit
+#submit, .button
 {
 	padding: 10px !important;
 	width: 100px;
 	background-color: #5C7A99;
 	color: white;
+	font-size: 12px;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 .warning
