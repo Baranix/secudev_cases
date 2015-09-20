@@ -50,5 +50,5 @@
 	}
 	mysqli_close($con);
 	
-	redirect("loginLandingPage.php");
+	redirect("profile.php");
 ?>

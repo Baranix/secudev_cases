@@ -9,12 +9,17 @@
 	</head>
 	<body>
 
-		<h1>Your Profile</h1>
+		<h1>Profile</h1>
 
 		<div class="content">
 		<?php
 			if(isset($_SESSION["user"]))
 			{
+				if(isset($_GET["u"]))
+					$u = $_GET["u"];
+				else
+					$u = $_SESSION["user"];
+
 				include 'connect.php';
 				$con = mysqli_connect("localhost", $db_username, $db_password, $db_name);
 				if( mysqli_connect_errno() )
@@ -23,9 +28,9 @@
 				}
 				else
 				{
-					$q = "SELECT username, salutation, last_name, first_name, gender, birthdate, about, is_superuser
-						FROM user
-						WHERE id=" . $_SESSION["user"];
+					$q = "SELECT username, s.salutation AS salutation, last_name, first_name, g.gender AS gender, birthdate, about
+						FROM user, salutation AS s, gender AS g
+						WHERE user.id=" . $u . " AND s.id = user.salutation AND g.id = user.gender;";
 
 					$result = mysqli_query($con, $q);
 
@@ -39,17 +44,27 @@
 							echo "<br>Birthdate: " . $row["birthdate"];
 							echo "<br>About me:<br>";
 							echo $row["about"];
-							$superuser = $row["is_superuser"];
+						}
+
+						$q = "SELECT is_superuser FROM user WHERE id=" . $_SESSION["user"];
+						$result2 = mysqli_query($con, $q);
+
+						if( mysqli_num_rows($result2) > 0 )
+						{
+							while($row = mysqli_fetch_assoc($result2))
+							{
+								$superuser = $row["is_superuser"];
+							}
 						}
 
 						echo "<br><br>";
-						echo "<a class=\"button medium\" href=\"editProfilePage.php\">Edit Profile</a> ";
+						if( $u == $_SESSION["user"] )
+							echo "<a class=\"button medium\" href=\"editProfilePage.php\">Edit Profile</a>";
+						else
+							echo "<a class=\"button medium\" href=\"?u=" . $_SESSION["user"] . "\">Back to Your Profile</a> ";
+
 						echo "<a class=\"button medium\" href=\"logout.php\">Logout</a>";
 
-						if($superuser)
-						{
-							echo "<br><br><a href=\"adminRegistrationPage.php\">Admin Page</a>";
-						}
 		?>
 
 	</div>
@@ -83,7 +98,7 @@
 						$num_messages = $row[0];
 						$num_pages = ceil( $num_messages / 10 );
 
-						$q = "SELECT message.id, user, message, created_on, edited_on, first_name, username, date_joined
+						$q = "SELECT message.id AS mid, user.id AS uid, user, message, created_on, edited_on, first_name, username, date_joined
 							FROM message, user
 							WHERE message.user = user.id
 							ORDER BY created_on DESC
@@ -95,9 +110,9 @@
 						{
 							echo "<div class=\"message_row\">";
 							echo "<div class=\"message_poster\">";
-							echo "Post ID: " . $row["id"] . "<br>";
-							echo "First Name: " . $row["first_name"] . "<br>";
-							echo "Username: " . $row["username"] . "<br>";
+							//echo "Post ID: " . $row["mid"] . "<br>";
+							echo "First Name: <a href=\"?u=" . $row["uid"] . "\">" . $row["first_name"] . "</a><br>";
+							echo "Username: <a href=\"?u=" . $row["uid"] . "\">" . $row["username"] . "</a><br>";
 							echo "Date Joined: " . $row["date_joined"] . "<br>";
 							echo "</div><div class=\"message_content\">";
 							echo "<span class=\"message_dateposted\">Date Posted: " . $row["created_on"] . "</span>";
@@ -107,8 +122,8 @@
 							if ( $row["user"] == $_SESSION["user"] || $superuser )
 							{
 								echo "<div class=\"edit_delete\">";
-								echo "<a class=\"button small\" href=\"updateMessage.php?message=" . $row["id"] . "\">Edit</a> ";
-								echo "<a class=\"button small\" href=\"deleteMessage.php?message=" . $row["id"] . "\">Delete</a>";
+								echo "<a class=\"button small\" href=\"updateMessage.php?message=" . $row["mid"] . "\">Edit</a> ";
+								echo "<a class=\"button small\" href=\"deleteMessage.php?message=" . $row["mid"] . "\">Delete</a>";
 								echo "</div>";
 							}
 							echo "</div></div>";
@@ -129,7 +144,7 @@
 							}
 							else
 							{
-								echo "<a class=\"button round\" href=\"loginLandingPage.php?page=" . $i . "\">" . $i . "</a> ";
+								echo "<a class=\"button round\" href=\"?u=" . $u . "&page=" . $i . "\">" . $i . "</a> ";
 							}
 
 						}

@@ -156,5 +156,5 @@
 		redirect("editProfilePage.php");
 	}
 
-	redirect("loginLandingPage.php");
+	redirect("profile.php");
 ?>

@@ -162,7 +162,7 @@
 						<label for="status_admin">Admin User</label>
 				<br> <br>
 
-					<input id="submit" type="submit" value="Register">
+					<input id="submit" class="button medium" type="submit" value="Register">
 			</form>
 		</div>
 
