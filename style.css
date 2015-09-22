@@ -129,6 +129,13 @@ input, select, textarea, .button
 	display: block;
 }
 
+.message_datedited
+{
+	font-size: 12px;
+	font-style: italic;
+	display: block;
+}
+
 .message
 {
 	display: block;

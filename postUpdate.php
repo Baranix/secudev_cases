@@ -47,6 +47,8 @@
 		redirect("login.html");
 	}
 
+	$mid = $_POST["mid"];
+	//$mid = $purifier->purify($mid);
 	$message = mysqli_real_escape_string($con, $_POST["message"] );
 	//$message = $purifier->purify($message);
 	$url = "profile.php?";
@@ -55,19 +57,18 @@
 		$u = $_GET["u"];
 		$url = $url . "u=" . $u;
 	}
+
+	//$url = $purifier->purify($url);
 		
-	if(isset($_GET["page"]))
+	/*if(isset($_GET["page"]))
 	{
 		if(isset($u))
 			$url = $url . "&";
 		$page = $_GET["page"];
 		$url = $url . "page=" . $page;
-	}
+	}*/
 
-	//$url = $purifier->purify($url);
-		
-
-	$q = "INSERT INTO `message` ( user, message ) VALUES ( " . $_SESSION["user"] . ", '" . $message . "' );";
+	$q = "UPDATE message SET message='" . $message . "' WHERE id=". (int) $mid;
 
 	$result = mysqli_query($con,$q);
 

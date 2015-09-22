@@ -1,6 +1,5 @@
 <?php
 	session_start();
-
 ?>
 
 <html>
@@ -116,9 +115,9 @@
 							echo "Date Joined: " . $row["date_joined"] . "<br>";
 							echo "</div><div class=\"message_content\">";
 							echo "<span class=\"message_dateposted\">Date Posted: " . $row["created_on"] . "</span>";
-							echo "<span class=\"message\">" . $row["message"] . "</span>";
 							if ( $row["edited_on"] != NULL )
 								echo "<span class=\"message_datedited\">Date Edited: " . $row["edited_on"] . "</span>";
+							echo "<span class=\"message\">" . $row["message"] . "</span>";
 							if ( $row["user"] == $_SESSION["user"] || $superuser )
 							{
 								echo "<div class=\"edit_delete\">";
