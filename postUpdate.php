@@ -48,9 +48,9 @@
 	}
 
 	$mid = $_POST["mid"];
-	//$mid = $purifier->purify($mid);
+	$mid = $purifier->purify($mid);
 	$message = mysqli_real_escape_string($con, $_POST["message"] );
-	//$message = $purifier->purify($message);
+	$message = $purifier->purify($message);
 	$url = "profile.php?";
 	if(isset($_GET["u"]))
 	{
@@ -58,7 +58,7 @@
 		$url = $url . "u=" . $u;
 	}
 
-	//$url = $purifier->purify($url);
+	$url = $purifier->purify($url);
 		
 	/*if(isset($_GET["page"]))
 	{

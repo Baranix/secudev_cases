@@ -48,7 +48,7 @@
 	}
 
 	$message = mysqli_real_escape_string($con, $_POST["message"] );
-	//$message = $purifier->purify($message);
+	$message = $purifier->purify($message);
 	$url = "profile.php?";
 	if(isset($_GET["u"]))
 	{
@@ -64,7 +64,7 @@
 		$url = $url . "page=" . $page;
 	}
 
-	//$url = $purifier->purify($url);
+	$url = $purifier->purify($url);
 		
 
 	$q = "INSERT INTO `message` ( user, message ) VALUES ( " . $_SESSION["user"] . ", '" . $message . "' );";

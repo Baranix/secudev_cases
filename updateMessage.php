@@ -8,7 +8,7 @@
 	//$clean_html = $purifier->purify($dirty_html);
 
 	$mid = $_GET["message"];
-	//$mid = $purifier->purify($mid);
+	$mid = $purifier->purify($mid);
 
 ?>
 

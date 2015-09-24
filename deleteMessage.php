@@ -18,7 +18,7 @@
 	}
 
 	$mid = $_GET["message"];
-	//$mid = $purifier->purify($mid);
+	$mid = $purifier->purify($mid);
 
 	if(isset($_SESSION["user"]))
 	{
