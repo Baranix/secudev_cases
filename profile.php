@@ -105,15 +105,16 @@
 
 						$result = mysqli_query($con, $q);
 
+						echo "<table>";
 						while($row = mysqli_fetch_assoc($result))
 						{
-							echo "<div class=\"message_row\">";
-							echo "<div class=\"message_poster\">";
+							echo "<tr class=\"message_row\">";
+							echo "<td class=\"message_poster\">";
 							//echo "Post ID: " . $row["mid"] . "<br>";
 							echo "First Name: <a href=\"?u=" . $row["uid"] . "\">" . $row["first_name"] . "</a><br>";
 							echo "Username: <a href=\"?u=" . $row["uid"] . "\">" . $row["username"] . "</a><br>";
 							echo "Date Joined: " . $row["date_joined"] . "<br>";
-							echo "</div><div class=\"message_content\">";
+							echo "</td><td class=\"message_content\">";
 							echo "<span class=\"message_dateposted\">Date Posted: " . $row["created_on"] . "</span>";
 							if ( $row["edited_on"] != NULL )
 								echo "<span class=\"message_datedited\">Date Edited: " . $row["edited_on"] . "</span>";
@@ -125,9 +126,11 @@
 								echo "<a class=\"button small\" href=\"deleteMessage.php?message=" . $row["mid"] . "\">Delete</a>";
 								echo "</div>";
 							}
-							echo "</div></div>";
+							echo "</td></tr>";
 
 						}
+						echo "</table>";
+
 						echo "<div id=\"pagination\">";
 						if ( $page > 1)
 						{

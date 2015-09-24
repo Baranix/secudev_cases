@@ -96,7 +96,7 @@ input, select, textarea, .button
 #post_msg
 {
 	border-bottom: 1px solid #5C7A99;
-	margin-bottom: 10px;
+	/*margin-bottom: 10px;*/
 	padding-bottom: 10px;
 	text-align: center;
 }
@@ -107,19 +107,34 @@ input, select, textarea, .button
 	padding-top: 30px !important;
 }
 
+table
+{
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.message_row
+{
+	border-bottom: 1px solid #5C7A99;
+}
+
 .message_poster
 {
+	padding-top: 5px;
 	float: left;
 	width: 150px;
 	font-size: 12px;
 	margin-right: 20px;
+	vertical-align: top;
+	min-height: 70px;
 }
 
 .message_content
 {
-	border-bottom: 1px solid #5C7A99;
 	margin-bottom: 10px;
+	padding-top: 5px;
 	padding-bottom: 15px;
+	min-height: 70px;
 }
 
 .message_dateposted
