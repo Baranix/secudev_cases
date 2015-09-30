@@ -1,4 +1,5 @@
 <?php
+
 	// Strip all inputs of possible HTML tags and surrounding white spaces
 	$username = strip_tags( trim( $_POST["username"] ) );
 	$password = strip_tags( trim( $_POST["password"] ) );

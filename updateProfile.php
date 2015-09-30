@@ -85,7 +85,6 @@
 		$flag["salutation"] = 1;
 	$flag["lname"] = checkCharacterLimit($lname);
 	$flag["fname"] = checkCharacterLimit($fname);
-	$flag["gender"] = checkCharacterLimit($gender);
 	if( $gender=='1' || $gender=='2' )
 	{
 		$flag["gender"] = 1;

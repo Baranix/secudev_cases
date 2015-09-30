@@ -4,6 +4,7 @@
 	require_once '/htmlpurifier-4.7.0/library/HTMLPurifier.auto.php';
 
 	$config = HTMLPurifier_Config::createDefault();
+	$config->set('HTML.Allowed', 'p,b,a[href],i,u,div,table,tr,td,span,ul,li,ol,img[src]');
 	$purifier = new HTMLPurifier($config);
 	//$clean_html = $purifier->purify($dirty_html);
 
