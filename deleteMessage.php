@@ -1,22 +1,7 @@
 <?php
 	session_start();
 
-	require_once '/htmlpurifier-4.7.0/library/HTMLPurifier.auto.php';
-
-	$config = HTMLPurifier_Config::createDefault();
-	$config->set('HTML.Allowed', 'p,b,a[href],i,u,div,table,tr,td,span,ul,li,ol,img[src]');
-	$purifier = new HTMLPurifier($config);
-	//$clean_html = $purifier->purify($dirty_html);
-
-	function redirect($url)
-	{
-		// Redirect to another page when done
-		ob_start();
-		sleep(2);
-		header("Location: " . $url);
-		ob_end_flush();
-		die();
-	}
+	include 'header.php';
 
 	$mid = $_GET["message"];
 	$mid = $purifier->purify($mid);

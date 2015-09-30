@@ -1,4 +1,6 @@
 <?php
+	
+	include 'header.php';
 
 	// Strip all inputs of possible HTML tags and surrounding white spaces
 	$username = strip_tags( trim( $_POST["username"] ) );
@@ -30,16 +32,6 @@
 	{
 		// Check if admin capabilities are active
 		$status = strip_tags( $_POST["status"] );
-	}
-
-	function redirect($url)
-	{
-		// Redirect to another page when done
-		ob_start();
-		sleep(2);
-		header("Location: " . $url);
-		ob_end_flush();
-		die();
 	}
 
 	function checkCharacterLimit( $x )

@@ -178,3 +178,19 @@ a:hover
 {
 	text-decoration: underline;
 }
+
+table#files
+{
+	width: 50%;
+	text-align: right;
+}
+
+table#files tr
+{
+	border-bottom: 1px solid #5C7A99;
+}
+
+table#files td
+{
+	padding: 10px;
+}

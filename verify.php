@@ -1,19 +1,11 @@
 <?php
 	session_start();
 
+	include 'header.php';
+
 	// Strip all inputs of possible HTML tags
 	$username = strip_tags( $_POST["userName"] );
 	$password = md5( $_POST["password"] );
-
-	function redirect($url)
-	{
-		// Redirect to another page when done
-		ob_start();
-		sleep(2);
-		header("Location: " . $url);
-		ob_end_flush();
-		exit();
-	}
 	
 	include 'connect.php';
 	$con = mysqli_connect("localhost", $db_username, $db_password, $db_name);

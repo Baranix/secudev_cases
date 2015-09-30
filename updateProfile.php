@@ -1,16 +1,8 @@
 <?php
 	session_start();
 
-	function redirect($url)
-	{
-		// Redirect to another page when done
-		ob_start();
-		sleep(2);
-		header("Location: " . $url);
-		ob_end_flush();
-		die();
-	}
-
+	include 'header.php';
+	
 	if(isset($_SESSION["user"]))
 	{
 		include 'connect.php';
