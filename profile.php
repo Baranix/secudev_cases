@@ -61,7 +61,11 @@
 							echo "<a class=\"button medium\" href=\"editProfilePage.php\">Edit Profile</a>";
 						else
 							echo "<a class=\"button medium\" href=\"?u=" . $_SESSION["user"] . "\">Back to Your Profile</a> ";
-
+						if( $superuser )
+						{
+							echo "<a class=\"button medium\" href=\"adminRegistrationPage.php\">Admin Registration</a>";
+							echo "<a class=\"button medium\" href=\"listBackup.php\">List of Backups</a>";
+						}
 						echo "<a class=\"button medium\" href=\"logout.php\">Logout</a>";
 
 		?>
@@ -157,6 +161,11 @@
 
 						}
 						echo "</div>";
+
+						if( $superuser )
+						{
+							echo "<a class=\"button medium\" href=\"backupMessages.php\">Backup Messages</a>";
+						}
 					}
 					else
 					{
