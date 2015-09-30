@@ -6,7 +6,7 @@
 	{
 		// Redirect to another page when done
 		ob_start();
-		sleep(2);
+		sleep(2000);
 		header("Location: " . $url);
 		ob_end_flush();
 		die();
