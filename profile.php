@@ -66,7 +66,9 @@
 							echo "<a class=\"button medium\" href=\"adminRegistrationPage.php\">Admin Registration</a>";
 							echo "<a class=\"button medium\" href=\"listBackup.php\">List of Backups</a>";
 						}
-						echo "<a class=\"button medium\" href=\"logout.php\">Logout</a>";
+						echo "<form action=\"logout.php\" method=\"POST\">";
+						echo "<input type=\"hidden\" name=\"logout\" value=\"" . $_SESSION["user"] . "\"><input type=\"submit\" class=\"button medium\" value=\"Logout\">";
+						echo "</form>"; /*href=\"logout.php\"*/
 
 		?>
 
@@ -82,13 +84,15 @@
 				</form>
 			</div>
 
-					<!--search bar-->
-			<div id = "search_bar">
-				<form class="searchform cf">
- 			 	<input type="text" placeholder="search here :)">
- 				<input id="search" class="search_button" type="Submit" value="Search">
- 				<input id="search" class="search_button" type="Submit" value="Advance Search">
-					</form>
+			<!--search bar-->
+			<div id="search_bar">
+				<form class="searchform">
+ 			 		<input type="text" placeholder="search here :)">
+ 					<input id="search" class="button small" type="Submit" value="Search">
+ 					<input id="search" class="button small" type="Submit" value="Advance Search">
+				</form>
+			</div>
+
 			<div id="messages">
 		<?php
 						if(isset($_GET["page"]))

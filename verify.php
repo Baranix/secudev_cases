@@ -3,6 +3,7 @@
 
 	include 'header.php';
 
+
 	// Strip all inputs of possible HTML tags
 	$username = strip_tags( $_POST["userName"] );
 	$password = md5( $_POST["password"] );
@@ -31,16 +32,16 @@
 			{
 				$_SESSION["user"] = $row["id"];
 			}
+			redirect("profile.php");
 		}
 		else
 		{
 			echo "Wrong username or password!";
 			echo $username;
 			echo $password;
-			sleep(5);
+			//sleep(5);
 		}
 	}
 	mysqli_close($con);
 	
-	redirect("profile.php");
 ?>

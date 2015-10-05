@@ -6,10 +6,10 @@
 	{
 		// Redirect to another page when done
 		ob_start();
-		sleep(2000);
+		//sleep(5);
 		header("Location: " . $url);
 		ob_end_flush();
-		die();
+		exit;
 	}
 
 	require_once '/htmlpurifier-4.7.0/library/HTMLPurifier.auto.php';
