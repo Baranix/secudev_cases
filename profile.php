@@ -81,6 +81,14 @@
 					<input id="submit" class="button medium" type="Submit" value="Post">
 				</form>
 			</div>
+
+					<!--search bar-->
+			<div id = "search_bar">
+				<form class="searchform cf">
+ 			 	<input type="text" placeholder="search here :)">
+ 				<input id="search" class="search_button" type="Submit" value="Search">
+ 				<input id="search" class="search_button" type="Submit" value="Advance Search">
+					</form>
 			<div id="messages">
 		<?php
 						if(isset($_GET["page"]))

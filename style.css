@@ -194,3 +194,8 @@ table#files td
 {
 	padding: 10px;
 }
+
+#search_bar{
+	text-align: right;
+	margin-top: -15px;
+}
