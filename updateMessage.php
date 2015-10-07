@@ -76,7 +76,7 @@
 					<textarea rows="4" cols="100" name="message"><?php echo $message; ?></textarea>
 					<input type="hidden" value="<?php echo $mid; ?>" name="mid">
 					<br>
-					<input id="submit" class="button medium" type="Submit" value="Post">
+					<input id="submit" class="button large" type="Submit" value="Post">
 				</form>
 			</div>
 

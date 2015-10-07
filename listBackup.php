@@ -42,7 +42,7 @@
 
 		<div class="content">
 			<center>
-			<a class="button medium" href="profile.php">Back to Profile</a>
+			<a class="button large" href="profile.php">Back to Profile</a>
 			<br><br><br>
 			<table id="files">
 				<?php

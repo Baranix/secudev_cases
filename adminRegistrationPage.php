@@ -36,7 +36,7 @@
 		{
 			if( $_SESSION["admin"]==0 )
 			{
-				redirect("logout.php");
+				redirect("profile.php");
 			}
 		}
 	}
@@ -154,7 +154,7 @@
 						<label for="status_admin">Admin User</label>
 				<br> <br>
 
-					<input id="submit" class="button medium" type="submit" value="Register">
+					<input id="submit" class="button large" type="submit" value="Register">
 			</form>
 		</div>
 

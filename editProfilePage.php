@@ -153,7 +153,7 @@
 				</div>
 				<br> <br>
 
-				<input id="submit" class="button medium" type="submit" value="Update"> <a class="button medium" href="logout.php">Logout</a>
+				<input id="submit" class="button large" type="submit" value="Update"> <a class="button large" href="logout.php">Logout</a>
 			</form> 
 			<?php
 						if($superuser)

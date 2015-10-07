@@ -62,6 +62,12 @@ input, select, textarea, .button
 
 .medium
 {
+	padding: 5px !important;
+	border-radius: 10px !important;
+}
+
+.large
+{
 	width: 100px;
 	padding: 10px !important;
 }
@@ -71,6 +77,14 @@ input, select, textarea, .button
 	border-radius: 20px;
 	width: 10px;
 	margin: 3px;
+}
+
+#logout_form
+{
+	position: relative;
+	left: 50px;
+	margin-bottom: -20px;
+	text-align: right;
 }
 
 #submit
@@ -96,7 +110,7 @@ input, select, textarea, .button
 #post_msg
 {
 	border-bottom: 1px solid #5C7A99;
-	/*margin-bottom: 10px;*/
+	margin-bottom: 20px;
 	padding-bottom: 10px;
 	text-align: center;
 }
@@ -106,6 +120,12 @@ input, select, textarea, .button
 	margin-top: 50px;
 	padding-top: 30px !important;
 }
+
+/*#messages
+{
+	position: relative;
+	top: 10px;
+}*/
 
 table
 {

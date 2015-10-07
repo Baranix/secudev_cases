@@ -27,6 +27,10 @@
 				}
 				else
 				{
+					echo "<div id=\"logout_form\"><form action=\"logout.php\" method=\"POST\">";
+					echo "<input type=\"hidden\" name=\"logout\" value=\"" . $_SESSION["user"] . "\"><input type=\"submit\" class=\"button medium\" value=\"Logout\">";
+					echo "</form></div>"; /*href=\"logout.php\"*/
+
 					$q = "SELECT username, s.salutation AS salutation, last_name, first_name, g.gender AS gender, birthdate, about
 						FROM user, salutation AS s, gender AS g
 						WHERE user.id=" . $u . " AND s.id = user.salutation AND g.id = user.gender;";
@@ -58,17 +62,15 @@
 
 						echo "<br><br>";
 						if( $u == $_SESSION["user"] )
-							echo "<a class=\"button medium\" href=\"editProfilePage.php\">Edit Profile</a>";
+							echo "<a class=\"button large\" href=\"editProfilePage.php\">Edit Profile</a>";
 						else
-							echo "<a class=\"button medium\" href=\"?u=" . $_SESSION["user"] . "\">Back to Your Profile</a> ";
+							echo "<a class=\"button large\" href=\"?u=" . $_SESSION["user"] . "\">Back to Your Profile</a> ";
 						if( $superuser )
 						{
-							echo "<a class=\"button medium\" href=\"adminRegistrationPage.php\">Admin Registration</a>";
-							echo "<a class=\"button medium\" href=\"listBackup.php\">List of Backups</a>";
+							echo "<a class=\"button large\" href=\"adminRegistrationPage.php\">Admin Registration</a>";
+							echo "<a class=\"button large\" href=\"listBackup.php\">List of Backups</a>";
 						}
-						echo "<form action=\"logout.php\" method=\"POST\">";
-						echo "<input type=\"hidden\" name=\"logout\" value=\"" . $_SESSION["user"] . "\"><input type=\"submit\" class=\"button medium\" value=\"Logout\">";
-						echo "</form>"; /*href=\"logout.php\"*/
+						echo "<br><br><br>";
 
 		?>
 
@@ -80,7 +82,7 @@
 					Post a Message:<br>
 					<textarea rows="4" cols="100" name="message"></textarea>
 					<br>
-					<input id="submit" class="button medium" type="Submit" value="Post">
+					<input id="submit" class="button large" type="Submit" value="Post">
 				</form>
 			</div>
 
@@ -88,8 +90,8 @@
 			<div id="search_bar">
 				<form class="searchform">
  			 		<input type="text" placeholder="search here :)">
- 					<input id="search" class="button small" type="Submit" value="Search">
- 					<input id="search" class="button small" type="Submit" value="Advance Search">
+ 					<input id="basicSearch" class="button medium" type="Submit" value="Search">
+ 					<input id="advSearch" class="button medium" type="Submit" value="Advance Search">
 				</form>
 			</div>
 
@@ -176,7 +178,7 @@
 
 						if( $superuser )
 						{
-							echo "<a class=\"button medium\" href=\"backupMessages.php\">Backup Messages</a>";
+							echo "<a class=\"button large\" href=\"backupMessages.php\">Backup Messages</a>";
 						}
 					}
 					else

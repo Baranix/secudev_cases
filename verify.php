@@ -32,7 +32,6 @@
 			{
 				$_SESSION["user"] = $row["id"];
 			}
-			redirect("profile.php");
 		}
 		else
 		{
@@ -41,7 +40,9 @@
 			echo $password;
 			//sleep(5);
 		}
+		
+		mysqli_close($con);
+		redirect("profile.php");
 	}
-	mysqli_close($con);
 	
 ?>
