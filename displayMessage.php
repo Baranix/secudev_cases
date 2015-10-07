@@ -2,11 +2,7 @@
 	session_start();
 
 	include 'header.php';
-
-	if( isset($_SESSION["user"]) )
-	{
 ?>
-
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css">
@@ -16,17 +12,16 @@
 			<br><br>
 			<center><a href="profile.php" class="button large">Return to Profile</a></center>
 			<div id="message_boards">
-
 <?php
 
-		if( isset($_POST['message']) )
+	if( isset($_SESSION["user"]) )
+	{
+		if( isset( $_GET["id"] ) )
 		{
-			$message = trim( $_POST['message'] );
-			$message = $purifier->purify($message);
-			
-			//connect to database
-			include 'connect.php';
-			
+
+			$mid = $_GET["id"];
+
+			include 'connect.php';	
 			$con = mysqli_connect("localhost", $db_username, $db_password, $db_name);
 			
 			if( mysqli_connect_errno() )
@@ -55,10 +50,8 @@
 					$page = 1;
 				}
 
-				$message = mysqli_real_escape_string($con, $message);
 				$q = "SELECT COUNT(id)
-					FROM message
-					WHERE message LIKE '%".$message."%'";
+					FROM message";
 
 				$result = mysqli_query($con, $q);
 				$row = mysqli_fetch_row($result);
@@ -70,26 +63,18 @@
 				$q = "SELECT message.id AS mid, user.id AS uid, user, message, created_on, edited_on, first_name, username, date_joined
 					FROM message, user
 					WHERE message.user = user.id
-						AND message LIKE '%".$message."%'
+						AND message.id = " . $mid . "
 					ORDER BY created_on DESC
 					LIMIT " . ($page - 1) * 10 . " , 10";
-				//$q = "SELECT id, message FROM message WHERE message LIKE '%".$message."%'";
 				$result = mysqli_query($con, $q);
-				$found = mysqli_num_rows($result);
-
-				if ($found==0)
-					echo "Sorry, there are no matching results.";
-				else
+				if (mysqli_num_rows($result) > 0)
 				{
 					echo "<table>";
-					while ($row = mysqli_fetch_assoc($result)) {
-						//$message = $row['message'];
-						//$id = $row['mid'];
-						//display results
-						//echo "<li><a href=\"displayMessage.php?id=" . $id . "\">" .$message. " </a></li>";
+					while($row = mysqli_fetch_assoc($result))
+					{
 						echo "<tr class=\"message_row\">";
 						echo "<td class=\"message_poster\">";
-						echo "Post ID: <a href=\"displayMessage.php?id=" . $row["mid"] . "\">" . $row["mid"] . "</a><br>";
+						//echo "Post ID: " . $row["mid"] . "<br>";
 						echo "First Name: <a href=\"?u=" . $row["uid"] . "\">" . $row["first_name"] . "</a><br>";
 						echo "Username: <a href=\"?u=" . $row["uid"] . "\">" . $row["username"] . "</a><br>";
 						echo "Date Joined: " . $row["date_joined"] . "<br>";
@@ -140,23 +125,16 @@
 		}
 		else
 		{
-			echo "Error searching for posts!";
-			echo " Go back to <a href=\"profile.php\">profile</a>.";
-			//redirect("profile.php");
+			echo "Message id not set.";
 		}
-?>
+	}
+	else
+	{
+		redirect("login.html");
+	}
 
+?>
 			</div>
 		</div>
 	</body>
 </html>
-
-<?php
-	}
-	else
-	{
-		//echo "Form submission error.";
-		redirect("login.html");	
-	}
-
-?>

@@ -88,8 +88,8 @@
 
 			<!--search bar-->
 			<div id="search_bar">
-				<form class="searchform">
- 			 		<input type="text" placeholder="search here :)">
+				<form class="searchform" action="basicSearch.php" method="POST">
+ 			 		<input type="text" placeholder="search here :)" name="message">
  					<input id="basicSearch" class="button medium" type="Submit" value="Search">
  					<input id="advSearch" class="button medium" type="Submit" value="Advance Search">
 				</form>
