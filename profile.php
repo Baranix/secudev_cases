@@ -5,6 +5,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="jquery.js"></script>
 	</head>
 	<body>
 
@@ -88,12 +89,73 @@
 
 			<!--search bar-->
 			<div id="search_bar">
-				<form class="searchform" action="basicSearch.php" method="POST">
- 			 		<input type="text" placeholder="search here :)" name="message">
- 					<input id="basicSearch" class="button medium" type="Submit" value="Search">
- 					<input id="advSearch" class="button medium" type="Submit" value="Advance Search">
-				</form>
+				<div id="basicSearchField">
+					<form class="searchform" action="basicSearch.php" method="POST">
+	 			 		<input type="text" placeholder="search here :)" name="message">
+	 					<input id="search" class="button medium" type="Submit" value="Search">
+					</form>
+					<button id="advSearch" class="button medium" onclick="toggleSearch()">Advanced Search</button>
+				</div>
+
+				<div id="advSearchField">
+					<form class="searchform" action="advSearch.php" method="POST">
+						<table id="advSearchTable">
+							<tr>
+								<td colspan="4"><b>Search By:</b></td>
+							</tr>
+							<tr>
+								<td id="usernameField">Username:</td>
+								<td><select class="condition"><option value="AND">and</option><option value="OR">or</option></select></td>
+								<td><input type="text" placeholder="username" name="username0"></td>
+								<td><button class="button medium" onclick="updateQuery('usernameField')">ADD</button></td>
+							</tr>
+							<tr>
+								<td id="messageField">By Post:</td>
+								<td><select class="condition"><option value="AND">and</option><option value="OR">or</option></select></td>
+								<td><input type="text" placeholder="message" name="message0"></td>
+								<td><button class="button medium" onclick="updateQuery('messageField')">ADD</button></td>
+							</tr>
+							<tr>
+								<td id="dateField">By Date:</td>
+								<td><select class="condition"><option value="AND">and</option><option value="OR">or</option></select></td>
+								<td><input type="date" name="date0"></td>
+								<td><button class="button medium" onclick="updateQuery('dateField')">ADD</button></td>
+							</tr>
+						</table>
+
+						Search query: <div id="query"></div>
+
+						<input id="search" class="button medium" type="Submit" value="Search">
+					</form>
+					<button id="basicSearch" class="button medium" onclick="toggleSearch()">Back to Basic Search</button>
+				</div>
 			</div>
+
+			<script>
+				$("#advSearchField").hide();
+
+				//var i=1;
+				var query = "";
+
+				function toggleSearch()
+				{
+					/*var condition = "<td><select class=\"condition\"><option value=\"AND\">and</option><option value=\"OR\">or</option></select></td>";
+					var add = "<td><button class=\"button medium\" onclick=\"updateQuery()\">ADD</button></td>";
+					var usernameField = "<td><input type=\"text\" placeholder=\"username\" name=\"username" + i + "\"></td>";
+					var messageField = "<td><input type=\"text\" placeholder=\"message\" name=\"message" + i + "\"></td>";
+					var dateField = "<td><input type=\"date\" name=\"date" + i + "\"></td>";*/
+					//var adv = $("#advSearchField").html();
+					$("#basicSearchField").hide();
+					$("#advSearchField").show();
+				}
+
+				function updateQuery(field)
+				{
+					var value = $("#" + field).parent().find('input').val();
+					query += value;
+					$("#query").html(query);
+				}
+			</script>
 
 			<div id="messages">
 		<?php

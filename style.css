@@ -216,6 +216,19 @@ table#files td
 }
 
 #search_bar{
-	text-align: right;
 	margin-top: -15px;
+	font-size: 12px;
+	margin-bottom: 20px;
+}
+
+.searchform
+{
+	position: relative;
+	display: inline;
+}
+
+#advSearchTable
+{
+	width: 400px !important;
+	font-size: 14px;
 }
