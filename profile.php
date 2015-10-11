@@ -94,7 +94,7 @@
 	 			 		<input type="text" placeholder="search here :)" name="message">
 	 					<input id="search" class="button medium" type="Submit" value="Search">
 					</form>
-					<button id="advSearch" class="button medium" onclick="toggleSearch()">Advanced Search</button>
+					<button id="advSearch" class="button medium" onclick="toggleSearch(1)">Advanced Search</button>
 				</div>
 
 				<div id="advSearchField">
@@ -107,19 +107,19 @@
 								<td id="usernameField">Username:</td>
 								<td><select class="condition"><option value="AND">and</option><option value="OR">or</option></select></td>
 								<td><input type="text" placeholder="username" name="username0"></td>
-								<td><button class="button medium" onclick="updateQuery('usernameField')">ADD</button></td>
+								<td><button class="button medium" onclick="updateQuery('usernameField'); return false;">ADD</button></td>
 							</tr>
 							<tr>
 								<td id="messageField">By Post:</td>
 								<td><select class="condition"><option value="AND">and</option><option value="OR">or</option></select></td>
 								<td><input type="text" placeholder="message" name="message0"></td>
-								<td><button class="button medium" onclick="updateQuery('messageField')">ADD</button></td>
+								<td><button class="button medium" onclick="updateQuery('messageField'); return false;">ADD</button></td>
 							</tr>
 							<tr>
 								<td id="dateField">By Date:</td>
 								<td><select class="condition"><option value="AND">and</option><option value="OR">or</option></select></td>
 								<td><input type="date" name="date0"></td>
-								<td><button class="button medium" onclick="updateQuery('dateField')">ADD</button></td>
+								<td><button class="button medium" onclick="updateQuery('dateField'); return false;">ADD</button></td>
 							</tr>
 						</table>
 
@@ -127,7 +127,7 @@
 
 						<input id="search" class="button medium" type="Submit" value="Search">
 					</form>
-					<button id="basicSearch" class="button medium" onclick="toggleSearch()">Back to Basic Search</button>
+					<button id="basicSearch" class="button medium" onclick="toggleSearch(0)">Back to Basic Search</button>
 				</div>
 			</div>
 
@@ -137,7 +137,7 @@
 				//var i=1;
 				var query = "";
 
-				function toggleSearch()
+				function toggleSearch( adv )
 				{
 					/*var condition = "<td><select class=\"condition\"><option value=\"AND\">and</option><option value=\"OR\">or</option></select></td>";
 					var add = "<td><button class=\"button medium\" onclick=\"updateQuery()\">ADD</button></td>";
@@ -145,8 +145,17 @@
 					var messageField = "<td><input type=\"text\" placeholder=\"message\" name=\"message" + i + "\"></td>";
 					var dateField = "<td><input type=\"date\" name=\"date" + i + "\"></td>";*/
 					//var adv = $("#advSearchField").html();
-					$("#basicSearchField").hide();
-					$("#advSearchField").show();
+
+					if(adv)
+					{
+						$("#basicSearchField").hide();
+						$("#advSearchField").show();
+					}
+					else
+					{
+						$("#basicSearchField").show();
+						$("#advSearchField").hide();
+					}					
 				}
 
 				function updateQuery(field)
