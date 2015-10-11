@@ -78,7 +78,9 @@
 				$found = mysqli_num_rows($result);
 
 				if ($found==0)
-					echo "Sorry, there are no matching results.";
+				{
+					echo "<center>Sorry, there are no matching results.</center>";
+				}
 				else
 				{
 					echo "<table>";
@@ -140,8 +142,8 @@
 		}
 		else
 		{
-			echo "Error searching for posts!";
-			echo " Go back to <a href=\"profile.php\">profile</a>.";
+			echo "<center>Error searching for posts!</center>";
+			//echo "<br>Go back to <a href=\"profile.php\">profile</a>.</center>";
 			//redirect("profile.php");
 		}
 ?>

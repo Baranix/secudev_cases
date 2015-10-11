@@ -36,13 +36,13 @@
 		else
 		{
 			echo "Wrong username or password!";
-			echo $username;
-			echo $password;
+			//echo $username;
+			//echo $password;
 			//sleep(5);
 		}
 		
 		mysqli_close($con);
-		redirect("profile.php");
 	}
+	redirect("profile.php");
 	
 ?>
