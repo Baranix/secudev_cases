@@ -1,0 +1,145 @@
+<html>
+
+	<head>
+
+		<style>
+			div{
+				padding:10px;
+			}
+			#search-div{
+				background-color : #6495ED;
+				height : 50px;
+				width : 600px;
+			}
+
+			#advanced-div{
+				background-color : #4682B4;
+				height : 60px;
+				width : 600px;
+			}
+		</style>
+		<script src="jquery.js"></script>
+		<script>
+
+				var c = true;
+				$(document).ready(function(){
+					$("#advanced-div").hide();
+					$("#datebetween-option").hide();
+					$("#date1").hide();
+					$("#date2").hide();
+					$("#datepost-operator").hide();
+					$("#add").hide();
+				});
+
+			function changeSearch(){
+				if(c){
+					$("#advanced-div").show();
+					$("#search-div").hide();
+					$("#add").show();
+					$("#toggleButton").text("Basic Search");
+				}else{
+					$("#search-div").show();
+					$("#advanced-div").hide();
+					$("#add").hide();
+					$("#toggleButton").text("Advanced Search");
+				}
+				
+				c = !c;
+			}
+			
+			function myFunction(){
+				var x = document.getElementById("column").value;
+				if(x=='user' || x=='post'){
+					$("#user-postInput").show();
+					$("#datepost-operator").hide();
+					$("#datebetween-option").hide();
+					$("#date2").hide();
+				}
+				else if(x=='date'){
+					$("#user-postInput").hide();
+					$("#datepost-operator").show();
+					$("#datebetween-option").hide();
+				}
+			}
+
+			function inputBox(){
+				var z = document.getElementById("column").value;
+				if(z=='user' || z=='post'){
+					$("#date1").hide();
+					$("#user-postInput").show();
+				}
+				else if(z=='date'){
+					$("#user-postInput").hide();
+					$("#date1").show();
+				}
+			}
+			
+			function date(){
+				var y = document.getElementById("datepost-operator").value;
+				if(y=='before' || y=='after'){
+					$("#user-postInput").hide();
+					$("#date1").show();
+					$("#datebetween-option").hide();
+					$("#date2").hide();
+				}
+				else if(y=='between'){
+					$("#user-postInput").hide();
+					$("#date1").show();
+					$("#datebetween-option").show();
+					$("#date2").show();
+				}
+			}
+
+			var newDiv = '<div id="advanced-div"> <select id="column" onchange="myFunction()"> <option value="user">User</option> <option value="post">Post</option> <option value="date">Date</option> </select> <input id="user-postInput" type="text" name="uPInput" size="25" onchange="inputBox()"> <select id="datepost-operator" onchange="date()"> <option value="before">before</option> <option value="between">between</option> <option value="after">after</option> </select> <input id="date1" type="date" name="date1" size="5" onchange="inputBox()"> <select id="datebetween-option"> <option value="and">and</option> <option value="or">or</option> </select> <input id="date2" type="date" name="date2" size="5"> </div> <br>';
+
+			$(document).ready(function(){
+					
+				$("#add").click(function(){
+				console.log(newDiv);
+
+					$("body").append(newDiv);
+				});
+			});
+			
+		</script>
+	</head>
+
+	<body>
+
+		<div id="search-div">
+			<br>
+			Search: <input type="text" size="35" placeholder=" Hellooo is it me you're looking for?">
+			<br>
+		</div>
+
+		<div id="advanced-div">
+			<br>
+			Search by: <select id="column" onchange="myFunction()">
+				<option value="user">User</option>
+				<option value="post">Post</option>
+				<option value="date">Date</option>
+			</select>
+
+			<input id="user-postInput" type="text" name="uPInput" size="25" placeholder=" input over heeeere" onchange="inputBox()">
+			
+			<select id="datepost-operator" onchange="date()">
+				<option value="before">before</option>
+				<option value="between">between</option>
+				<option value="after">after</option>
+			</select>
+			
+			<input id="date1" type="date" name="date1" size="5" onchange="inputBox()">
+			
+			<select id="datebetween-option">
+				<option value="and">and</option>
+				<option value="or">or</option>
+			</select>
+				
+			<input id="date2" type="date" name="date2" size="5">
+			<br>
+	    </div>
+	    <button id="toggleButton"onclick="changeSearch()"> Advanced Search </button>
+	    <button id="add">Add Advanced Search </button>
+	</body>
+
+</html>
