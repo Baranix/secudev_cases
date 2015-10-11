@@ -73,13 +73,18 @@
 	$flag = array("salutation"=>0, "lname"=>0, "fname"=>0, "gender"=>0, "birthdate"=>0, "old_password"=>0, "new_password"=>0);
 
 	// Check character limit of each input, set flag to 1 if valid
-	if( !empty( $salutation ) )
-		$flag["salutation"] = 1;
 	$flag["lname"] = checkCharacterLimit($lname);
 	$flag["fname"] = checkCharacterLimit($fname);
 	if( $gender=='1' || $gender=='2' )
 	{
 		$flag["gender"] = 1;
+		if( !empty( $salutation ) )
+		{
+			if( ($gender == '1' && $salutation >=0 && $salutation < 5) || ($gender == '2' ) && $salutation >=5 && $salutation <=10 )
+			{
+				$flag["salutation"] = 1;
+			}
+		}
 	}
 	if( !empty($year) && !empty($month) && !empty($day) && preg_match("/^[0-9]+$/", $year) && preg_match("/^[0-9]+$/", $month) && preg_match("/^[0-9]+$/", $day) )
 	{
