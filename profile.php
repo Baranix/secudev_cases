@@ -99,72 +99,29 @@
 
 				<div id="advSearchField">
 					<form class="searchform" action="advSearch.php" method="POST">
-						<table id="advSearchTable">
-							<tr>
-								<td colspan="4"><b>Search By:</b></td>
-							</tr>
-							<tr>
-								<td id="usernameField">Username:</td>
-								<td><select class="condition"><option value="AND">and</option><option value="OR">or</option></select></td>
-								<td><input type="text" placeholder="username" name="username0"></td>
-								<td><button class="button medium" onclick="updateQuery('usernameField'); return false;">ADD</button></td>
-							</tr>
-							<tr>
-								<td id="messageField">By Post:</td>
-								<td><select class="condition"><option value="AND">and</option><option value="OR">or</option></select></td>
-								<td><input type="text" placeholder="message" name="message0"></td>
-								<td><button class="button medium" onclick="updateQuery('messageField'); return false;">ADD</button></td>
-							</tr>
-							<tr>
-								<td id="dateField">By Date:</td>
-								<td><select class="condition"><option value="AND">and</option><option value="OR">or</option></select></td>
-								<td><input type="date" name="date0"></td>
-								<td><button class="button medium" onclick="updateQuery('dateField'); return false;">ADD</button></td>
-							</tr>
-						</table>
-
-						Search query: <div id="query"></div>
-
+						<input type="text" placeholder="Post" name="message">
 						<input id="search" class="button medium" type="Submit" value="Search">
+						<button type="button" id="basicSearch" class="button medium" onclick="toggleSearch(0)">Back to Basic Search</button>
+						<br/><br/>
+						<span>
+							<select class="operator" name="operator[]"><option value="1">And</option><option value="2">Or</option></select>
+							<select class="searchBy" name="searchBy[]" onchange="toggleField(this.parentNode)"><option value="1">Username</option><option value="2">Date</option></select>
+							<span class="usernameSearch">
+								<input type="text" placeholder="Username" name="username[]">
+							</span>
+							<!--<span class="postSearch" style="display:none;">
+								<input type="text" placeholder="Post" name="post[]">
+							</span>-->
+							<span class="dateSearch" style="display:none;">
+								<select class="dateCondition" name="dateCondition[]" onchange="toggleDates(this.parentNode)"><option value="1">&gt;=</option><option value="2">&lt;=</option><option value="3">=</option><option value="4">Between</option></select>
+								<input type="date" class="date1" name="date1[]">
+								<input type="date" class="date2" name="date2[]" style="display:none;">
+							</span>
+						</span>
+						<button type="button" class="button medium" onclick="addSearchParams(this)">Add</button>
 					</form>
-					<button id="basicSearch" class="button medium" onclick="toggleSearch(0)">Back to Basic Search</button>
 				</div>
 			</div>
-
-			<script>
-				$("#advSearchField").hide();
-
-				//var i=1;
-				var query = "";
-
-				function toggleSearch( adv )
-				{
-					/*var condition = "<td><select class=\"condition\"><option value=\"AND\">and</option><option value=\"OR\">or</option></select></td>";
-					var add = "<td><button class=\"button medium\" onclick=\"updateQuery()\">ADD</button></td>";
-					var usernameField = "<td><input type=\"text\" placeholder=\"username\" name=\"username" + i + "\"></td>";
-					var messageField = "<td><input type=\"text\" placeholder=\"message\" name=\"message" + i + "\"></td>";
-					var dateField = "<td><input type=\"date\" name=\"date" + i + "\"></td>";*/
-					//var adv = $("#advSearchField").html();
-
-					if(adv)
-					{
-						$("#basicSearchField").hide();
-						$("#advSearchField").show();
-					}
-					else
-					{
-						$("#basicSearchField").show();
-						$("#advSearchField").hide();
-					}					
-				}
-
-				function updateQuery(field)
-				{
-					var value = $("#" + field).parent().find('input').val();
-					query += value;
-					$("#query").html(query);
-				}
-			</script>
 
 			<div id="messages">
 		<?php
@@ -243,7 +200,6 @@
 						if ( $page < $num_pages && $page != 0 )
 						{
 							echo " >>";
-
 						}
 						echo "</div>";
 
@@ -269,5 +225,6 @@
 			</div>
 		</div>
 
+		<script src="advSearch.js"></script>
 	</body>
 </html>
