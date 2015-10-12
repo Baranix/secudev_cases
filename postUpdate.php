@@ -35,8 +35,8 @@
 
 	$mid = $_POST["mid"];
 	$mid = $purifier->purify($mid);
-	$message = $purifier->purify($message);
-	$message = mysqli_real_escape_string($con, $_POST["message"] );
+	$message = $purifier->purify($_POST["message"]);
+	$message = mysqli_real_escape_string($con, $message);
 	$url = "profile.php?";
 	if(isset($_GET["u"]))
 	{
