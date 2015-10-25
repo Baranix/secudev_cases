@@ -24,7 +24,7 @@ h1
 .content
 {
 	background-color: #D6EBFF;
-	border:3px solid #5C7A99 ;
+	border: 3px solid #5C7A99;
 	border-radius: 25px;
 	font-size: 16px;
 	margin-right: 30px;
@@ -41,6 +41,12 @@ input, select, textarea, .button
 	border-radius: 25px;
 	padding: 3px;
 	padding-left: 10px;
+}
+
+input[type=image]
+{
+	padding: 0px !important;
+	background-color: #5C7A99;
 }
 
 .button
@@ -117,7 +123,7 @@ input, select, textarea, .button
 
 #message_boards
 {
-	margin-top: 50px;
+	margin-top: 10px;
 	padding-top: 30px !important;
 }
 
@@ -231,4 +237,15 @@ table#files td
 {
 	width: 400px !important;
 	font-size: 14px;
+}
+
+#donations
+{
+	margin-top: 10px;
+	text-align: center;
+}
+
+#donations form
+{
+	display: inline;
 }
