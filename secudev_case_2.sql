@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2015 at 09:30 AM
+-- Generation Time: Oct 28, 2015 at 05:23 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -29,6 +29,28 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `backup_message` (
   `id` int(11) NOT NULL,
   `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `backup_message`
+--
+
+INSERT INTO `backup_message` (`id`, `created_on`) VALUES
+(1, '2015-09-30 07:53:42'),
+(2, '2015-09-30 08:47:33'),
+(3, '2015-10-12 03:23:48'),
+(4, '2015-10-14 03:46:17'),
+(5, '2015-10-14 03:55:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `badge`
+--
+
+CREATE TABLE IF NOT EXISTS `badge` (
+  `id` tinyint(4) NOT NULL,
+  `name` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -53,6 +75,18 @@ INSERT INTO `gender` (`id`, `gender`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `hasbadge`
+--
+
+CREATE TABLE IF NOT EXISTS `hasbadge` (
+  `id` int(11) NOT NULL,
+  `badge_id` tinyint(4) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `message`
 --
 
@@ -62,7 +96,18 @@ CREATE TABLE IF NOT EXISTS `message` (
   `message` text NOT NULL,
   `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `edited_on` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`id`, `user`, `message`, `created_on`, `edited_on`) VALUES
+(1, 1, 'Hello world!', '2015-09-30 07:53:38', NULL),
+(2, 1, 'Rawr', '2015-09-30 08:47:27', NULL),
+(3, 1, 'Rawrzers', '2015-10-07 06:40:40', NULL),
+(4, 2, 'Hello, everyone!', '2015-10-12 00:30:56', NULL),
+(7, 2, '', '2015-10-14 03:41:44', NULL);
 
 -- --------------------------------------------------------
 
@@ -109,14 +154,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `about` varchar(255) NOT NULL,
   `date_joined` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_superuser` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `salutation`, `first_name`, `last_name`, `gender`, `birthdate`, `about`, `date_joined`, `is_superuser`) VALUES
-(1, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 5, 'Admin', 'Istrator', 1, '1990-01-01', 'Admin', '2015-09-16 12:12:23', 1);
+(1, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 5, 'Admin', 'Istrator', 1, '1990-01-01', 'Admin', '2015-09-16 12:12:23', 1),
+(2, 'nikkie', '827ccb0eea8a706c4c34a16891f84e7b', 5, 'Nikki', 'Ebora', 2, '1990-03-30', 'Describe yourself.', '2015-10-07 11:55:33', 0);
 
 --
 -- Indexes for dumped tables
@@ -129,9 +175,21 @@ ALTER TABLE `backup_message`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `badge`
+--
+ALTER TABLE `badge`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `gender`
 --
 ALTER TABLE `gender`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hasbadge`
+--
+ALTER TABLE `hasbadge`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -160,17 +218,22 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `backup_message`
 --
 ALTER TABLE `backup_message`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `hasbadge`
+--
+ALTER TABLE `hasbadge`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
