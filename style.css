@@ -41,6 +41,7 @@ input, select, textarea, .button
 	border-radius: 25px;
 	padding: 3px;
 	padding-left: 10px;
+	outline: none;
 }
 
 input[type=image]
@@ -248,4 +249,40 @@ table#files td
 #donations form
 {
 	display: inline;
+}
+
+.itemCard
+{
+	width: 200px;
+	height: 300px;
+	margin: auto;
+}
+
+.itemTitle
+{
+	text-align: center;
+	font-weight: bold;
+}
+
+.itemImage
+{
+	text-align: center;
+}
+
+.itemImage img
+{
+	height: 200px;
+	width: auto;
+}
+
+.itemPrice
+{
+	width: inherit;
+	text-align: right;
+}
+
+.itemDesc
+{
+	text-align: center;
+	font-size: 12px;
 }
