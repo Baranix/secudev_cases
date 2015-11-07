@@ -72,13 +72,61 @@
 								echo "No items in stock!";
 							}
 
+							if($superuser)
+							{
+						?>
+			</div>
+			<div class="content">
+			<form action="addItem.php" method="post" enctype="multipart/form-data">
+				<b>Add items</b><br><br>
+				<table>
+					<tr>
+						<td>
+							Name:
+						</td>
+						<td>
+							<input type="text" name="name">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Price:
+						</td>
+						<td>
+							<input type="number" name="price" min="1.00" max="50000.00">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Description:
+						</td>
+						<td>
+							<textarea name="description" rows="3" columns="30"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Select image to upload:
+						</td>
+						<td>
+							<input type="file" name="image" id="image">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input type="submit" class="button large" value="Add Item" name="submit">
+						</td>
+					</tr>
+				</table>
+			</form>
+						<?php
+							}
+
 							mysqli_close($con);
 						} // end secure database connection
 
 					} // end check if user is logged in
 				?>
-
 		</div>
-
 	</body>
 </html>
