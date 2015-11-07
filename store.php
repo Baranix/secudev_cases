@@ -42,6 +42,7 @@
 								}
 							} // end check if superuser
 
+
 							/* DISPLAY ITEMS IN STORE */
 
 							$q = "SELECT * FROM item";
@@ -51,17 +52,18 @@
 								echo "<table id=\"store\"><tr>";
 								while($row = mysqli_fetch_assoc($result))
 								{
-									echo "<script>console.log('". (int)$row['id']%4 . "');</script>";
+									//echo "<script>console.log('". (int)$row['id']%4 . "');</script>";
 									if( (int)$row['id']%4 == 0 )
 									{
 										echo "</tr><tr>";
 									}
-									echo "<td><div class=\"itemCard\">";
+									echo "<td><form class=\"itemCard\" action=\"addToCart.php\" method=\"post\">";
+									echo "<input type=\"hidden\" name=\"item_id\" value=\"" . $row["id"] . "\">";
 									echo "<div class=\"itemTitle\">" . $row["name"] . "</div>";
 									echo "<div class=\"itemImage\"><img src=\"" . $row["image"] . "\"></div>";
 									echo "<div class=\"itemDesc\">" . $row["desc"] . "</div>";
-									echo "<div class=\"itemPrice\">P" . $row["price"] . " <button class=\"button medium cart\">Add to Cart</button></div>";
-									echo "</div></td>";
+									echo "<div class=\"itemPrice\">P" . $row["price"] . " <input type=\"submit\" class=\"button medium cart\" value=\"Add to Cart\"></div>";
+									echo "</form></td>";
 								}
 								echo "</tr></table>";
 							}
