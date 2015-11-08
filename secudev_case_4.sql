@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2015 at 02:54 PM
+-- Generation Time: Nov 08, 2015 at 12:43 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -62,7 +62,8 @@ CREATE TABLE IF NOT EXISTS `badge` (
 CREATE TABLE IF NOT EXISTS `cart` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL
+  `item_id` int(11) NOT NULL,
+  `qty` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
