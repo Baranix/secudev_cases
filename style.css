@@ -36,7 +36,7 @@ h1
 }
 
 input, select, textarea, .button
-{ 
+{
 	border: 3px solid #5C7A99;
 	border-radius: 25px;
 	padding: 3px;
@@ -285,4 +285,65 @@ table#files td
 {
 	text-align: center;
 	font-size: 12px;
+}
+
+#store .itemField
+{
+	width: 300px;
+}
+
+#store .itemPrice
+{
+	margin: 15px 0;
+}
+
+#store .admin
+{
+	text-align: center;
+}
+
+#editItem .title
+{
+	text-align: center;
+}
+
+#editItem .itemField
+{
+	width: 300px;
+}
+
+#viewItem .title
+{
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#viewItem .image
+{
+	height: 300px;
+	width: auto;
+	display: block;
+	margin: auto;
+}
+
+#viewItem .desc, .price, .addToCart, .admin
+{
+	text-align: center;
+}
+
+#cart
+{
+	border: 1px solid #5C7A99;
+}
+
+#cart td
+{
+	border: 1px solid #5C7A99;
+	padding: 3px;
+}
+
+#cart .image
+{
+	height: 150px;
 }
