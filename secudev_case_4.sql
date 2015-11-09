@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2015 at 05:23 AM
+-- Generation Time: Nov 07, 2015 at 02:54 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `secudev_case_2`
+-- Database: `secudev_case_4`
 --
 
 -- --------------------------------------------------------
@@ -56,6 +56,18 @@ CREATE TABLE IF NOT EXISTS `badge` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE IF NOT EXISTS `cart` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `gender`
 --
 
@@ -83,6 +95,30 @@ CREATE TABLE IF NOT EXISTS `hasbadge` (
   `badge_id` tinyint(4) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item`
+--
+
+CREATE TABLE IF NOT EXISTS `item` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `desc` text
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`id`, `name`, `image`, `price`, `desc`) VALUES
+(1, 'Winged Jacket', 'img/items/jacket.jpg', '1000.00', 'Winged Jacket'),
+(2, 'Lace Dress', 'img/items/lace-dress.jpg', '850.55', 'Lace Dress'),
+(3, 'Purple Loose Top', 'img/items/loose-top.jpg', '350.75', 'Purple Loose Top'),
+(4, 'Blue Polo', 'img/items/polo.PNG', '250.00', 'Blue Polo');
 
 -- --------------------------------------------------------
 
@@ -181,6 +217,12 @@ ALTER TABLE `badge`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `gender`
 --
 ALTER TABLE `gender`
@@ -190,6 +232,12 @@ ALTER TABLE `gender`
 -- Indexes for table `hasbadge`
 --
 ALTER TABLE `hasbadge`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `item`
+--
+ALTER TABLE `item`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -220,10 +268,20 @@ ALTER TABLE `user`
 ALTER TABLE `backup_message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `hasbadge`
 --
 ALTER TABLE `hasbadge`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `item`
+--
+ALTER TABLE `item`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `message`
 --
