@@ -244,11 +244,29 @@ table#files td
 {
 	margin-top: 10px;
 	text-align: center;
+
+
 }
 
 #donations form
 {
 	display: inline;
+}
+
+#userprofile
+{
+	float: left;
+	width: 25%;
+	height: 40%;
+}
+
+#badgeSide
+{	
+
+	float-right;
+	width: 25%;
+	height: 40%;
+	margin-left:510px; 
 }
 
 .itemCard

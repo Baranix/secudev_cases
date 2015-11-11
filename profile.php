@@ -11,7 +11,9 @@
 
 		<h1>Profile</h1>
 
-		<div class="content">
+
+		<div id = "userprofile" class = "content">
+		<!--<div class = "content">-->
 		<?php
 			if(isset($_SESSION["user"]))
 			{
@@ -72,10 +74,45 @@
 							echo "<a class=\"button large\" href=\"listBackup.php\">List of Backups</a>";
 						}
 						echo "<br><br><br>";
+			?>
+			</div>
 
-		?>
+		<div id = "badgeSide" class = "content">
+			<?php
+				$badgePostReward = mysql_query("SELECT user, message FROM message WHERE user = user.user");
+				while ($row=mysql_fetch_assoc($badgePostReward)){
+					if (message>='3'){
+						echo "<img src = '../badges/participantBadge.png'>";
+					}
+					else if (message>='5'){
+						echo "<img src = '../badges/chatterBadge.png'>";
+					}
+					else if (message>='10'){
+						echo "<img src = '../badges/socialiteBadge.png'>";
+					}
+				}
 
-		</div>
+				$badgeCollectionReward = mysql_query("SELECT id FROM badge");
+				while ($row=mysql_fetch_assoc($badgeCollectionReward)){
+					if ("SELECT user_id FROM hasbadge WHERE badge_id = '0,3,6'"){
+						$badgeCollectionReward = mysql_query("SELECT id FROM user WHERE id = user_id.hasbadge");
+						echo "<img src='../badges/explorerBadge.png'>";
+					}
+					else if ("SELECT user_id FROM hasbadge WHERE badge_id = '4,7'"){
+						$badgeCollectionReward = mysql_query("SELECT id from user WHERE id = user_id.hasbadge");
+						echo "<img src='../badge/backerBadge.png'>";
+					}
+					else if ("SELECT user_id FROM hasbadge WHERE badge_id = '2,5,8'"){
+						$badgeCollectionReward = mysql_query("SELECT id FROM user WHERE id = user_id.hasbadge");
+						echo "<img src='../badges/evangelistBadge.png'>";
+					}
+
+				}
+
+			?>		
+		</div>						
+	
+		
 		<div id="donations" class="content">
 			<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
