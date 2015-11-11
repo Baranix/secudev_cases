@@ -1,0 +1,29 @@
+<?php
+	session_start();
+
+	include 'header.php';
+
+	$item_id = $_GET["item"];
+	$item_id = $purifier->purify($item_id);
+
+	if(isset($_SESSION["user"]))
+	{
+		include 'connect.php';
+		$con = mysqli_connect("localhost", $db_username, $db_password, $db_name);
+		if( mysqli_connect_errno() )
+		{
+			echo "<br>Database connection failed: " . mysqli_connect_error() . "<br>";
+		}
+		else
+		{
+			$q = "INSERT INTO cart (user_id, item_id, qty) VALUES (" . $_SESSION["user"] . ", " . $item_id . ", 1);";
+
+			mysqli_query($con,$q);
+		}
+	}
+
+	mysqli_close($con);
+
+	redirect("cart.php");
+
+?>
