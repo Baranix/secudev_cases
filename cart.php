@@ -43,15 +43,14 @@
                             } // end check if superuser
 
 
-                            /* DISPLAY ITEMS IN CART */
-
-                            $q = "SELECT * FROM cart, item WHERE cart.checkout=false AND cart.item_id=item.id AND cart.user_id=" . $_SESSION["user"] . " ORDER BY cart.id";
+                            /* DISPLAY ITEMS IN CART (unpaid only) */
+                            $q = "SELECT * FROM cart, item WHERE cart.paid=false AND cart.item_id=item.id AND cart.user_id=" . $_SESSION["user"] . " ORDER BY cart.id";
                             $result = mysqli_query($con, $q);
                             if( mysqli_num_rows($result) > 0 )
                             {
                                 echo "<form action=\"updateCart.php\" method=\"post\">";
                                 echo "<table id=\"cart\">";
-                                echo "<tr><td>No.</td><td>Item</td><td>Image</td><td>Price</td><td>Qty</td><td></td></tr>";
+                                echo "<tr class=\"label\"><td>No.</td><td>Item</td><td>Image</td><td>Price</td><td>Qty</td><td></td></tr>";
                                 $i = 1;
                                 $total = 0;
                                 while($row = mysqli_fetch_assoc($result))
@@ -79,6 +78,7 @@
                                 <input type="hidden" name="item_name" value="Payment">
                                 <input type="hidden" name="amount" value="<?php echo $total; ?>">
                                 <input type="hidden" name="currency_code" value="PHP">
+                                <Input type="hidden" name="tx" value="-pChIE70JdobDMnbhzMyO5NOESfp3PyYispLEgDREdely2lic6oB7MfpS58"/>
                                 <input type="hidden" name="return" value="http://localhost:81/secudev/cases/checkout.php?user=<?php echo $_SESSION["user"]; ?>">
 
                                 <input type="image" name="submit" border="0"

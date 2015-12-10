@@ -19,11 +19,11 @@
 			{
 				if ($_POST['qty'][$i] > 0)
 				{
-					$q = "UPDATE cart SET qty=" . $_POST['qty'][$i] . " WHERE checkout=false AND item_id=". $_POST['item_id'][$i] ." AND user_id=" . $_SESSION["user"];
+					$q = "UPDATE cart SET qty=" . $_POST['qty'][$i] . " WHERE paid=false AND item_id=". $_POST['item_id'][$i] ." AND user_id=" . $_SESSION["user"];
 				}
 				else
 				{
-					$q = "DELETE FROM cart WHERE checkout=false AND item_id =" . $_POST['item_id'][$i] . " AND user_id =" . $_SESSION["user"];
+					$q = "DELETE FROM cart WHERE paid=false AND item_id =" . $_POST['item_id'][$i] . " AND user_id =" . $_SESSION["user"];
 				}
 				mysqli_query($con,$q);
 			}

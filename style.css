@@ -260,13 +260,9 @@ table#files td
 	height: 40%;
 }
 
-#badgeSide
-{	
+#badges
+{
 
-	float-right;
-	width: 25%;
-	height: 40%;
-	margin-left:510px; 
 }
 
 .itemCard
@@ -355,6 +351,11 @@ table#files td
 	border: 1px solid #5C7A99;
 }
 
+#cart .label
+{
+	font-weight: bold;
+}
+
 #cart td
 {
 	border: 1px solid #5C7A99;
@@ -364,4 +365,61 @@ table#files td
 #cart .image
 {
 	height: 150px;
+}
+
+#managementConsole .title
+{
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#transactions
+{
+	border: 1px solid #5C7A99;
+}
+
+#transactions .label
+{
+	font-weight: bold;
+}
+
+#transactions  td
+{
+	border: 1px solid #5C7A99;
+	padding: 3px;
+}
+
+#transactions .date
+{
+	width: 200px;
+	vertical-align: top;
+}
+
+#transactions .username
+{
+	width: 200px;
+	vertical-align: top;
+}
+
+#transactions .fullName
+{
+	width: 200px;
+	vertical-align: top;
+}
+
+#transactions .amount
+{
+	width: 150px;
+	vertical-align: top;
+}
+
+#transactions .items
+{
+}
+
+#transactions .status
+{
+	width: 150px;
+	vertical-align: top;
 }

@@ -16,9 +16,13 @@
 		}
 		else
 		{
-			$q = "INSERT INTO cart (user_id, item_id, qty) VALUES (" . $_SESSION["user"] . ", " . $item_id . ", 1);";
-
-			mysqli_query($con,$q);
+			$q = "SELECT id FROM cart WHERE paid=false AND user_id=" . $_SESSION["user"] . " AND item_id=". $item_id;
+			$result = mysqli_query($con,$q);
+			if( mysqli_num_rows($result) == 0 )
+            {
+            	$q = "INSERT INTO cart (user_id, item_id, qty) VALUES (" . $_SESSION["user"] . ", " . $item_id . ", 1);";
+            	mysqli_query($con,$q);
+            }
 		}
 	}
 

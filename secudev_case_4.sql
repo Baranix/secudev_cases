@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2015 at 12:43 PM
+-- Generation Time: Nov 15, 2015 at 11:59 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -63,8 +63,23 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
-  `qty` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `qty` int(11) NOT NULL DEFAULT '0',
+  `checkout` tinyint(1) NOT NULL DEFAULT '0',
+  `transaction_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `item_id`, `qty`, `checkout`, `transaction_id`) VALUES
+(1, 2, 3, 1, 1, 1),
+(2, 2, 2, 1, 1, 1),
+(3, 2, 5, 1, 1, 2),
+(4, 2, 2, 1, 1, 2),
+(5, 2, 3, 1, 1, 3),
+(6, 2, 2, 1, 1, 0),
+(7, 2, 2, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -108,18 +123,18 @@ CREATE TABLE IF NOT EXISTS `item` (
   `name` varchar(255) NOT NULL,
   `image` varchar(50) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `desc` text
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `description` text
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item`
 --
 
-INSERT INTO `item` (`id`, `name`, `image`, `price`, `desc`) VALUES
+INSERT INTO `item` (`id`, `name`, `image`, `price`, `description`) VALUES
 (1, 'Winged Jacket', 'img/items/jacket.jpg', '1000.00', 'Winged Jacket'),
 (2, 'Lace Dress', 'img/items/lace-dress.jpg', '850.55', 'Lace Dress'),
 (3, 'Purple Loose Top', 'img/items/loose-top.jpg', '350.75', 'Purple Loose Top'),
-(4, 'Blue Polo', 'img/items/polo.PNG', '250.00', 'Blue Polo');
+(5, 'Blue Flower', 'img/blueflower.jpg', '250.00', 'Blue Flower');
 
 -- --------------------------------------------------------
 
@@ -172,6 +187,28 @@ INSERT INTO `salutation` (`id`, `salutation`) VALUES
 (8, 'Madame'),
 (9, 'Majesty'),
 (10, 'Señora');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaction`
+--
+
+CREATE TABLE IF NOT EXISTS `transaction` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`id`, `user_id`, `amount`, `timestamp`) VALUES
+(1, 2, '0.00', '2015-11-09 04:17:37'),
+(2, 2, '0.00', '2015-11-09 04:22:07'),
+(3, 2, '0.00', '2015-11-09 04:23:22');
 
 -- --------------------------------------------------------
 
@@ -254,6 +291,12 @@ ALTER TABLE `salutation`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -272,7 +315,7 @@ ALTER TABLE `backup_message`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `hasbadge`
 --
@@ -282,12 +325,17 @@ ALTER TABLE `hasbadge`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user`
 --

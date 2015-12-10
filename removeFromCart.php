@@ -16,7 +16,7 @@
 		}
 		else
 		{
-			$q = "SELECT id FROM cart WHERE checkout=false AND user_id =" . $_SESSION["user"] . " AND item_id =" . $item_id;
+			$q = "SELECT id FROM cart WHERE paid=false AND user_id =" . $_SESSION["user"] . " AND item_id =" . $item_id;
 
 			$result = mysqli_query($con,$q);
 

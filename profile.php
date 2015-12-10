@@ -12,8 +12,9 @@
 		<h1>Profile</h1>
 
 
-		<div id = "userprofile" class = "content">
-		<!--<div class = "content">-->
+		<div class = "content">
+			<table><tr>
+			<td>
 		<?php
 			if(isset($_SESSION["user"]))
 			{
@@ -75,60 +76,135 @@
 						}
 						echo "<br><br><br>";
 			?>
-			</div>
+			</td>
 
-		<div id = "badgeSide" class = "content">
-			<?php
-				$badgePostReward = mysql_query("SELECT user, message FROM message WHERE user = user.user");
-				while ($row=mysql_fetch_assoc($badgePostReward)){
-					if (message>='3'){
-						echo "<img src = '../badges/participantBadge.png'>";
-					}
-					else if (message>='5'){
-						echo "<img src = '../badges/chatterBadge.png'>";
-					}
-					else if (message>='10'){
-						echo "<img src = '../badges/socialiteBadge.png'>";
-					}
-				}
+			<td>
+				<?php
+					// badge for posts
+					$q = "SELECT COUNT(id) as posts FROM message WHERE user=". $_SESSION["user"];
+					$result = mysqli_query($con, $q);
 
-				$badgeCollectionReward = mysql_query("SELECT id FROM badge");
-				while ($row=mysql_fetch_assoc($badgeCollectionReward)){
-					if ("SELECT user_id FROM hasbadge WHERE badge_id = '0,3,6'"){
-						$badgeCollectionReward = mysql_query("SELECT id FROM user WHERE id = user_id.hasbadge");
-						echo "<img src='../badges/explorerBadge.png'>";
-					}
-					else if ("SELECT user_id FROM hasbadge WHERE badge_id = '4,7'"){
-						$badgeCollectionReward = mysql_query("SELECT id from user WHERE id = user_id.hasbadge");
-						echo "<img src='../badge/backerBadge.png'>";
-					}
-					else if ("SELECT user_id FROM hasbadge WHERE badge_id = '2,5,8'"){
-						$badgeCollectionReward = mysql_query("SELECT id FROM user WHERE id = user_id.hasbadge");
-						echo "<img src='../badges/evangelistBadge.png'>";
-					}
+					$num_posts = 0;
+					if( mysqli_num_rows($result) > 0 )
+	                {
+	                	$row = mysqli_fetch_assoc($result);
+	                	$num_posts = $row['posts'];
+	                }
 
-				}
+	                $post_badge = "";
+	                if ( $num_posts >= 10 )
+	                {
+	                	$post_badge = "Socialite";
+	                }
+	                else if ( $num_posts >= 5 )
+	                {
+	                	$post_badge = "Chatter";
+	                }
+	                else if ( $num_posts >= 3 )
+	                {
+	                	$post_badge = "Participant";
+	                }
+	                echo "Post Badge: " . $post_badge . "<br>";
 
-			?>		
-		</div>						
-	
-		
+
+	                // badge for donations
+	                $q = "SELECT SUM(amount) as total_amount FROM donation WHERE user_id=". $_SESSION["user"];
+					$result = mysqli_query($con, $q);
+
+					$donation = 0;
+					if( mysqli_num_rows($result) > 0 )
+	                {
+	                	$row = mysqli_fetch_assoc($result);
+	                	$donation = $row['total_amount'];
+	                }
+
+	                $donation_badge = "";
+	                if ( $donation >= 100 )
+	                {
+	                	$donation_badge = "Pillar";
+	                }
+	                else if ( $donation >= 20 )
+	                {
+	                	$donation_badge = "Contributor";
+	                }
+	                else if ( $donation >= 5 )
+	                {
+	                	$donation_badge = "Supporter";
+	                }
+	                echo "Donation Badge: " . $donation_badge . "<br>";
+
+	                // badge for purchases
+	                $q = "SELECT SUM(amount) as total_amount FROM transaction WHERE status=1 AND user_id=". $_SESSION["user"];
+					$result = mysqli_query($con, $q);
+
+					$total_amount = 0;
+					if( mysqli_num_rows($result) > 0 )
+	                {
+	                	$row = mysqli_fetch_assoc($result);
+	                	$total_amount = $row['total_amount'];
+	                }
+
+	                $store_badge = "";
+	                if ( $total_amount >= 100 )
+	                {
+	                	$store_badge = "Elite";
+	                }
+	                else if ( $total_amount >= 20 )
+	                {
+	                	$store_badge = "Promoter";
+	                }
+	                else if ( $total_amount >= 5 )
+	                {
+	                	$store_badge = "Shopper";
+	                }
+	                echo "Store Badge: " . $store_badge . "<br>";
+
+
+	                // badge collection
+	                $collection_badge = "";
+	                if ( $num_posts >= 10 && $donation >= 100 && $total_amount >= 100 )
+	        		{
+	        			$collection_badge = "Evangelist";
+	        		}
+	            	else if ( $donation >= 20 && $total_amount >= 20 )
+	        		{
+	        			$collection_badge = "Backer";
+	        		}
+	        		else if ( $num_posts >= 3 && $donation >= 5 && $total_amount >= 5 )
+	            	{
+	            		$collection_badge = "Explorer";
+	            	}
+	            	echo "Collection Badge: " . $collection_badge . "<br>";
+				?>
+			</td>
+			</tr></table>
+		</div>
+
 		<div id="donations" class="content">
 			<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="HG88GZKQQ52YC">
+				<input type="hidden" name="currency_code" value="PHP">
+				<Input type="hidden" name="tx" value="-pChIE70JdobDMnbhzMyO5NOESfp3PyYispLEgDREdely2lic6oB7MfpS58"/>
+				<input type="hidden" name="return" value="http://localhost:81/secudev/cases/donate.php?user=<?php echo $_SESSION["user"]; ?>">
 				<input type="image" src="http://i.imgur.com/YVGmin4.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 				<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
 			</form>
 			<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="736WK2XKHW2TL">
+				<input type="hidden" name="currency_code" value="PHP">
+				<Input type="hidden" name="tx" value="-pChIE70JdobDMnbhzMyO5NOESfp3PyYispLEgDREdely2lic6oB7MfpS58"/>
+				<input type="hidden" name="return" value="http://localhost:81/secudev/cases/donate.php?user=<?php echo $_SESSION["user"]; ?>">
 				<input type="image" src="http://i.imgur.com/jvCgtjB.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 				<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
 			</form>
 			<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="XAA8X3HJ7B35C">
+				<input type="hidden" name="currency_code" value="PHP">
+				<Input type="hidden" name="tx" value="-pChIE70JdobDMnbhzMyO5NOESfp3PyYispLEgDREdely2lic6oB7MfpS58"/>
+				<input type="hidden" name="return" value="http://localhost:81/secudev/cases/donate.php?user=<?php echo $_SESSION["user"]; ?>">
 				<input type="image" src="http://i.imgur.com/S5gWMUQ.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 				<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
 			</form>
